@@ -173,7 +173,7 @@ Roll out a good change first so the class sees a healthy rollout complete — bu
 
 ```bash
 kubectl set image deployment/sample-app -n app \
-  sample-app=<registry>/<image>:<a-known-good-tag>
+  sample-app="<registry>/<image>:<a-known-good-tag>"
 kubectl rollout status deployment/sample-app -n app
 ```
 
@@ -187,7 +187,7 @@ Now break it on purpose. Roll out a tag that does not exist (or an image that fa
 
 ```bash
 kubectl set image deployment/sample-app -n app \
-  sample-app=<registry>/<image>:does-not-exist
+  sample-app="<registry>/<image>:does-not-exist"
 kubectl rollout status deployment/sample-app -n app --timeout=60s
 ```
 
@@ -604,7 +604,7 @@ Close the one gap GitOps left open: the database Secret could not be committed t
 **First two minutes, before anything else:** kick off the EKS cluster so it provisions in the background. The cluster config lives in the pre-flight materials; substitute your account and region:
 
 ```bash
-eksctl create cluster -f eks-cluster.yaml
+eksctl create cluster -f manifests/day-two/eks-cluster.yaml
 ```
 
 ```text
@@ -1512,7 +1512,7 @@ deployment.apps/aws-load-balancer-controller scaled
 Now start the cluster deletion. It runs for several minutes in the background while you walk the rest of the orphaned-resource check — do not wait silently on it. The region comes from the config, so pass only `-f` (eksctl rejects `--region` together with `-f`):
 
 ```bash
-eksctl delete cluster -f eks-cluster.yaml
+eksctl delete cluster -f manifests/day-two/eks-cluster.yaml (need to add full path)
 ```
 
 ```text
