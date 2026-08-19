@@ -5,9 +5,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/ALT-F4-LLC/fem-kubernetes
+    repoURL: https://github.com/phhien203/fem-kubernetes
     targetRevision: main
-    path: manifests/day-one/k8s/base
+    path: k8s/base
   destination:
     server: https://kubernetes.default.svc
     namespace: app
