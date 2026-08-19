@@ -635,7 +635,7 @@ Replace the POC NodePort with a real front door. Install NGINX Gateway Fabric on
 Install NGINX Gateway Fabric in three steps: the Gateway API standard-channel CRDs (the route's API types), NGF's own CRDs, then the controller in its NodePort variant for `kind`. This is the environment-specific piece — the controller that will fulfill the `Gateway` and `HTTPRoute` we write next. The refs below are pinned to `v2.6.3`, the version pinned in pre-flight; if it has moved by the day, apply the exact release tag from the pre-flight checklist rather than a moving ref.
 
 ```bash
-kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v2.6.3" | kubectl apply -f -
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.5.1/standard-install.yaml
 kubectl apply --server-side -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v2.6.3/deploy/crds.yaml
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v2.6.3/deploy/nodeport/deploy.yaml
 ```
